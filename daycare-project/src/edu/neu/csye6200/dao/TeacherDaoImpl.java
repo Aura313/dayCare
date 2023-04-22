@@ -55,6 +55,7 @@ public class TeacherDaoImpl {
 	}
 
 	public int addTeacher(Teacher teacher) throws Exception {
+		System.out.println("tetetete ---->" + teacher);
 		connection = getConnection();
 		preparedStatement = connection.prepareStatement(
 				"insert into  daycare.teacher(employee_id, first_name, last_name,email, joining_date, annual_review_date, avg_rating) values (default, ?, ?, ?, ? ,?,?)",

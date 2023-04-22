@@ -67,7 +67,7 @@ public class StudentDaoImpl {
 		preparedStatement.setDate(4, Date.valueOf(student.getDob()));
 		preparedStatement.setInt(5, student.getAge());
 		preparedStatement.setDate(6, Date.valueOf(student.getRegistrationDate()));
-		preparedStatement.setInt(7, 0);
+		preparedStatement.setInt(7, 224);
 		preparedStatement.setInt(8, student.getParentId());
 
 		preparedStatement.executeUpdate();
