@@ -235,7 +235,7 @@ public class GroupHelper {
                         classroom.setClassId(classroomCounter+1); 
                         classrooms.add(classroom);
                     }
-                    if(indgroupCounter>2){
+                    if(indgroupCounter>3){
                          classroomCounter++;
                     }
                    
@@ -268,7 +268,7 @@ public class GroupHelper {
                         classroom.setClassId(classroomCounter+1); 
                         classrooms.add(classroom);
                     }
-                    if(indgroupCounter>2){
+                    if(indgroupCounter>3){
                          classroomCounter++;
                     }
                    
@@ -300,7 +300,7 @@ public class GroupHelper {
                         classroom.setClassId(classroomCounter+1); 
                         classrooms.add(classroom);
                     }
-                    if(indgroupCounter>2){
+                    if(indgroupCounter>3){
                          classroomCounter++;
                     }
                    
@@ -332,7 +332,7 @@ public class GroupHelper {
                         classroom.setClassId(classroomCounter+1); 
                         classrooms.add(classroom);
                     }
-                    if(indgroupCounter>2){
+                    if(indgroupCounter>3){
                          classroomCounter++;
                     }
                    
