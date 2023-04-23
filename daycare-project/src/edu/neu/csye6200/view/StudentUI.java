@@ -108,7 +108,7 @@ public class StudentUI extends javax.swing.JFrame {
 			}
 		});
 
-		jPanel1.setBackground(new java.awt.Color(178, 255, 176));
+		jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
 		jLabelStudentTitle.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
 		jLabelStudentTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -116,7 +116,7 @@ public class StudentUI extends javax.swing.JFrame {
 		jLabelStudentTitle.setText("Students Info");
 		jLabelStudentTitle.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-		jLabel3.setBackground(new java.awt.Color(51, 51, 51));
+		jLabel3.setBackground(new java.awt.Color(204, 204, 255));
 		jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lmdic1.PNG"))); // NOI18N
 
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

@@ -65,19 +65,17 @@ public class ClassroomUI extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabelClassroomtitle = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1456, 550));
-        setPreferredSize(new java.awt.Dimension(1456, 587));
 
-        jPanel2.setBackground(new java.awt.Color(178, 255, 176));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(1456, 70));
         jPanel2.setVerifyInputWhenFocusTarget(false);
 
-        jLabelClassroomtitle.setBackground(new java.awt.Color(178, 255, 176));
+        jLabelClassroomtitle.setBackground(new java.awt.Color(204, 204, 255));
         jLabelClassroomtitle.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabelClassroomtitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelClassroomtitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/classroom1.PNG"))); // NOI18N
@@ -87,16 +85,12 @@ public class ClassroomUI extends javax.swing.JFrame {
 
         jLabel7.setBackground(new java.awt.Color(51, 51, 51));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lmdic1.PNG"))); // NOI18N
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel1)
-                .addGap(355, 355, 355)
+                .addGap(420, 420, 420)
                 .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelClassroomtitle, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -104,9 +98,6 @@ public class ClassroomUI extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel1))
             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jLabelClassroomtitle, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
@@ -224,7 +215,6 @@ public class ClassroomUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelClassroomtitle;
     private javax.swing.JPanel jPanel2;
