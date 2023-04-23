@@ -20,7 +20,7 @@ import edu.neu.csye6200.model.Teacher;
 import java.time.LocalDate;
 
 /**
- * @author pratiknakave
+ * @author sid
  *
  */
 public class GroupHelper {
