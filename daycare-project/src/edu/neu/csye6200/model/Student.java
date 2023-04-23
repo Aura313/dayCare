@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.neu.csye6200.util.ConversionUtil;
+import java.time.Period;
 
 /**
  * @author pnakave
@@ -125,8 +126,10 @@ public class Student extends Person {
 		this.age = age;
 	}
 
-	public int getAge() {
-		return age;
+	public int getAge() {   
+             LocalDate now = LocalDate.now();
+            Period age = Period.between(dob, now);
+		return age.getYears();
 	}
 
 	public Parent getParent() {

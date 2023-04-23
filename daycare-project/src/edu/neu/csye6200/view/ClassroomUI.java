@@ -6,7 +6,9 @@
 package edu.neu.csye6200.view;
 
 import edu.neu.csye6200.controller.GroupHelper;
+import edu.neu.csye6200.model.Classroom;
 import edu.neu.csye6200.model.Group;
+import edu.neu.csye6200.model.Student;
 
 import java.util.List;
 import javax.swing.JTable;
@@ -25,25 +27,25 @@ public class ClassroomUI extends javax.swing.JFrame {
     String classroomId, groupId,groupCount,studentCount,teacherAssigned;
     public ClassroomUI() {
         initComponents();
-        jTableClassroomInfo.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jTableClassroomInfo.setAutoCreateColumnsFromModel(true);
-        try {
-        	System.out.println("Showing Class romm and group info:");
-        	fetchClassRoomGroupInfo((DefaultTableModel)jTableClassroomInfo.getModel())
-        	.addRow(new Object[]{classroomId,groupId,groupCount,studentCount,teacherAssigned});
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTable1.setAutoCreateColumnsFromModel(true);
+//        try {
+//        	System.out.println("Showing Class romm and group info:");
+//        	fetchClassRoomGroupInfo((DefaultTableModel)jTableClassroomInfo.getModel())
+//        	.addRow(new Object[]{classroomId,groupId,groupCount,studentCount,teacherAssigned});
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
     }
-     public ClassroomUI(List<Group> grouplist) {
+     public ClassroomUI(List<Classroom> classrooms) {
         initComponents();
-        jTableClassroomInfo.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jTableClassroomInfo.setAutoCreateColumnsFromModel(true);
+        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTable1.setAutoCreateColumnsFromModel(true);
 
-        DefaultTableModel model = (javax.swing.table.DefaultTableModel)jTableClassroomInfo.getModel(); 
+        DefaultTableModel model = (javax.swing.table.DefaultTableModel)jTable1.getModel(); 
         System.out.println("Showing Class romm and group info:");
         try {
-        	fetchClassRoomGroupInfo(model);
+        	fetchClassRoomGroupInfo(model,classrooms);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -64,12 +66,11 @@ public class ClassroomUI extends javax.swing.JFrame {
         jLabelClassroomtitle = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableClassroomInfo = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1456, 587));
+        setMinimumSize(new java.awt.Dimension(1456, 550));
         setPreferredSize(new java.awt.Dimension(1456, 587));
 
         jPanel2.setBackground(new java.awt.Color(178, 255, 176));
@@ -110,41 +111,45 @@ public class ClassroomUI extends javax.swing.JFrame {
             .addComponent(jLabelClassroomtitle, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jInternalFrame1.setResizable(true);
-        jInternalFrame1.setFrameIcon(null);
-        jInternalFrame1.setVisible(true);
-
-        jTableClassroomInfo.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                 "Group Id", "Classroom Id ", "No. of  Students ", "Teacher Assigned"
+                "ClassroomID", "Group ID", "Teacher Name", "Student Name"
             }
         ));
-        jTableClassroomInfo.setPreferredSize(new java.awt.Dimension(468, 442));
-        jScrollPane1.setViewportView(jTableClassroomInfo);
-
-        jInternalFrame1.getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        jScrollPane2.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, 1400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1507, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1506, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(13, 13, 13)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         pack();
@@ -183,33 +188,47 @@ public class ClassroomUI extends javax.swing.JFrame {
         });
     }
     
-    private DefaultTableModel fetchClassRoomGroupInfo(DefaultTableModel model) throws Exception {
+    private DefaultTableModel fetchClassRoomGroupInfo(DefaultTableModel model,List<Classroom> classrooms) throws Exception {
 
         //JTableHeader th = new JTableHeader();
         
         model.setRowCount(0);
-        GroupHelper helper = new GroupHelper();
-        List<Group>	 groups = helper.getClassRoomGroupInfo();
-        for (Group group : groups) {
-            System.out.println(group.getGroupId());
+        for (Classroom classroom : classrooms) {
             Object[] row = new Object[4];
-            row[0] = group.getGroupId();
-            row[1] = group.getClassId();
-            row[3] = group.getTeacherId();
-            row[2] = group.getStudentsEnrolled();
-            model.addRow(row);
-
+            row[0] = classroom.getClassId();
+            for(Group group : classroom.getGroups()){
+                 row[1] = group.getGroupId();
+                 row[2] = group.getTeacher().getFirstName()+" "+group.getTeacher().getLastName();
+                 for(Student stud : group.getStudents()){
+                     row[3] = stud.getFirstName()+" "+stud.getLastName()+" "+"(Age :"+stud.getAge()+")";
+                      model.addRow(row);
+                 }
+            }
+            
         }
         return model;
+        //GroupHelper helper = new GroupHelper();
+       
+//        List<Group>	 groups = helper.getClassRoomGroupInfo();
+//        for (Group group : groups) {
+//            System.out.println(group.getGroupId());
+//            Object[] row = new Object[4];
+//            row[0] = group.getGroupId();
+//            row[1] = group.getClassId();
+//            row[3] = group.getTeacherId();
+//            row[2] = group.getStudentsEnrolled();
+//            model.addRow(row);
+//
+//        }
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelClassroomtitle;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableClassroomInfo;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

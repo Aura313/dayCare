@@ -16,6 +16,7 @@ import edu.neu.csye6200.model.Parent;
 import edu.neu.csye6200.model.Student;
 import edu.neu.csye6200.model.Teacher;
 import edu.neu.csye6200.model.Vaccine;
+import java.time.LocalDate;
 
 /**
  * @author tanyashah
@@ -145,8 +146,10 @@ public class StudentDaoImpl {
 		preparedStatement.setInt(3, vaccine.getTotalDoses());
 		preparedStatement.setString(4, vaccine.getVaccinationRecord().toString());
 		preparedStatement.setDate(5, Date.valueOf(vaccine.getLastShotDate()));
-		Date nextshotDate = Date.valueOf(LocalDate.now());
-		preparedStatement.setDate(6, nextshotDate);
+
+		//preparedStatement.setDate(6, Date.valueOf(vaccine.getNextShotDate()));
+                Date nextshotDate = Date.valueOf(LocalDate.now());
+                preparedStatement.setDate(6, nextshotDate);
 		preparedStatement.setInt(7, vaccine.getStudentId());
 		preparedStatement.setBoolean(8, vaccine.isVaccinated());
 

@@ -232,9 +232,10 @@ public class LMDLandingPage extends javax.swing.JFrame {
         		e.printStackTrace();
         	}
             GroupHelper helper= new GroupHelper();
-           List<Group> grouplist=helper.getClassRoomGroupInfo();
+             List<Classroom> classrooms = GroupHelper.groupMe();
+          // List<Group> grouplist=helper.getClassRoomGroupInfo();
            //ClassroomUI classUI= new ClassroomUI(grouplist);
-           classroom = new ClassroomUI(grouplist);
+           classroom = new ClassroomUI(classrooms);
            //classUI.setVisible(true);
            classroom.setVisible(true);
         } catch (Exception ex) {
