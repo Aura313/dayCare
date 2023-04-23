@@ -51,6 +51,34 @@ public class StudentUI extends javax.swing.JFrame {
 		initComponents();
 		jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		jTable1.setAutoCreateColumnsFromModel(true);
+		
+
+		Object[] data = new Object[10];
+		StudentService sservice = new StudentService();
+		List<Student> tList = new ArrayList<Student>();
+		try {
+			tList = sservice.getAllStudents();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		DefaultTableModel mTable = (DefaultTableModel) jTable1.getModel();
+		mTable.setRowCount(0);
+		for (Student t : tList) {
+			
+			System.out.println( "cjhhwckc ->" + t);
+			data[0] = t.getStudentId();
+			data[1] = t.getFirstName();
+			data[2] = t.getLastName();
+			data[3] = t.getAddress();
+			data[4] = t.getRegistrationDate();
+			data[5] = t.getDob();
+			data[6] = t.getParent().getFirstName();
+			data[7] = t.getParent().getLastName();
+			data[8] = t.getParent().getPhone();
+			data[9] = t.getParent().getEmail();
+			mTable.addRow(data);
+		}
 
 	}
 
@@ -109,16 +137,16 @@ public class StudentUI extends javax.swing.JFrame {
 			}
 		});
 
-		jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+		jPanel1.setBackground(new java.awt.Color(109, 135, 255));
 
 		jLabelStudentTitle.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
 		jLabelStudentTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		jLabelStudentTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/std1.png"))); // NOI18N
 		jLabelStudentTitle.setText("Students Info");
 		jLabelStudentTitle.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-
-		jLabel3.setBackground(new java.awt.Color(204, 204, 255));
-		jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lmdic1.PNG"))); // NOI18N
+//
+//		jLabel3.setBackground(new java.awt.Color(204, 204, 255));
+//		jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lmdic1.PNG"))); // NOI18N
 
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
 		jPanel1.setLayout(jPanel1Layout);
@@ -369,32 +397,6 @@ public class StudentUI extends javax.swing.JFrame {
 
 		jInternalFrame1.getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-		Object[] data = new Object[10];
-		StudentService sservice = new StudentService();
-		List<Student> tList = new ArrayList<Student>();
-		try {
-			tList = sservice.getAllStudents();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		DefaultTableModel mTable = (DefaultTableModel) jTable1.getModel();
-		mTable.setRowCount(0);
-		for (Student t : tList) {
-			
-			System.out.println( "cjhhwckc ->" + t);
-			data[0] = t.getStudentId();
-			data[1] = t.getFirstName();
-			data[2] = t.getLastName();
-			data[3] = t.getAddress();
-			data[4] = t.getRegistrationDate();
-			data[5] = t.getDob();
-			data[6] = t.getParent().getFirstName();
-			data[7] = t.getParent().getLastName();
-			data[8] = t.getParent().getPhone();
-			data[9] = t.getParent().getEmail();
-			mTable.addRow(data);
-		}
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);

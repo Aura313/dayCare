@@ -55,6 +55,27 @@ public class TeacherUI extends javax.swing.JFrame {
 		initComponents();
 		jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		jTable1.setAutoCreateColumnsFromModel(true);
+		
+        Object[] data = new Object[6];
+		TeacherService tservice = new TeacherService();
+		List<Teacher> tList = new ArrayList<Teacher>();
+		try {
+			tList = tservice.getAllTeachers();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		DefaultTableModel mTable = (DefaultTableModel) jTable1.getModel();
+		mTable.setRowCount(0);
+		for (Teacher t : tList) {
+			data[0] = t.getEmployeeId();
+			data[1] = t.getFirstName();
+			data[2] = t.getLastName();
+			data[3] = t.getJoiningDate();
+			data[4] = t.getEmailID();
+			data[5] = t.getAnnualReviewDate();
+			mTable.addRow(data);
+		}
 
 	}
 
@@ -70,7 +91,6 @@ public class TeacherUI extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabelTeacherTitle = new javax.swing.JLabel();
-        jLabelLogo = new javax.swing.JLabel();
         jPanelToolBar = new javax.swing.JPanel();
         jTextFieldSearch = new javax.swing.JTextField();
         JLabelSearch = new javax.swing.JLabel();
@@ -102,16 +122,14 @@ public class TeacherUI extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(109, 135, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
+        jLabelTeacherTitle.setBackground(new java.awt.Color(204, 204, 255));
         jLabelTeacherTitle.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabelTeacherTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTeacherTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tcher1.png"))); // NOI18N
         jLabelTeacherTitle.setText("Teacher Dashboard");
         jLabelTeacherTitle.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-
-        jLabelLogo.setBackground(new java.awt.Color(51, 51, 51));
-        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lmdic1.PNG"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -119,9 +137,7 @@ public class TeacherUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelLogo)
-                .addGap(392, 392, 392)
-                .addComponent(jLabelTeacherTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelTeacherTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 1476, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -129,9 +145,6 @@ public class TeacherUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabelTeacherTitle))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
         );
 
         jPanelToolBar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -167,13 +180,6 @@ public class TeacherUI extends javax.swing.JFrame {
                 jButtonDownloadMouseClicked(evt);
             }
         });
-        
-        jButtonDownload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDownloadActionPerformed(evt);
-            }
-        });
-
 
         jButtonSave.setBackground(new java.awt.Color(0, 153, 51));
         jButtonSave.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
@@ -246,7 +252,6 @@ public class TeacherUI extends javax.swing.JFrame {
         jPanel2.add(jLabeTeacherlLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 78, -1));
 
         jTextFieldTeacherAnnualReviewDate.setToolTipText("Enter Text");
-        jTextFieldTeacherAnnualReviewDate.setEnabled(false);
         jTextFieldTeacherAnnualReviewDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldTeacherAnnualReviewDateActionPerformed(evt);
@@ -319,27 +324,6 @@ public class TeacherUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jInternalFrame1.getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
-        
-        Object[] data = new Object[6];
-		TeacherService tservice = new TeacherService();
-		List<Teacher> tList = new ArrayList<Teacher>();
-		try {
-			tList = tservice.getAllTeachers();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		DefaultTableModel mTable = (DefaultTableModel) jTable1.getModel();
-		mTable.setRowCount(0);
-		for (Teacher t : tList) {
-			data[0] = t.getEmployeeId();
-			data[1] = t.getFirstName();
-			data[2] = t.getLastName();
-			data[3] = t.getJoiningDate();
-			data[4] = t.getEmailID();
-			data[5] = t.getAnnualReviewDate();
-			mTable.addRow(data);
-		}
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -694,7 +678,6 @@ public class TeacherUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelAnnualReviewDate;
     private javax.swing.JLabel jLabelEmail;
     private javax.swing.JLabel jLabelJoiningDate;
-    private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelTeacherTitle;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

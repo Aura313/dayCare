@@ -99,7 +99,7 @@ public class VaccinationUI extends javax.swing.JFrame {
 			}
 		});
 
-		jPanel1.setBackground(new java.awt.Color(178, 255, 176));
+		jPanel1.setBackground(new java.awt.Color(109, 135, 255));
 
 		jLabelStudentTitle.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
 		jLabelStudentTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

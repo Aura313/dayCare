@@ -17,9 +17,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
+ * @author tanyashah
  *
- * @author erruc
  */
 public class LMDLandingPage extends javax.swing.JFrame {
     private TeacherUI teacher;
@@ -48,7 +49,6 @@ public class LMDLandingPage extends javax.swing.JFrame {
         jTopPanel1 = new javax.swing.JPanel();
         jLabelMenu = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jSplitPanel = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
@@ -63,6 +63,7 @@ public class LMDLandingPage extends javax.swing.JFrame {
         jLabelClassrooms = new javax.swing.JLabel();
         jLabelViewFeedback = new javax.swing.JLabel();
         jRightPanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addContainerListener(new java.awt.event.ContainerAdapter() {
@@ -72,7 +73,7 @@ public class LMDLandingPage extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTopPanel1.setBackground(new java.awt.Color(178, 255, 176));
+        jTopPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jTopPanel1.setMaximumSize(new java.awt.Dimension(200, 80));
         jTopPanel1.setMinimumSize(new java.awt.Dimension(200, 80));
         jTopPanel1.setPreferredSize(new java.awt.Dimension(200, 80));
@@ -91,12 +92,8 @@ public class LMDLandingPage extends javax.swing.JFrame {
         });
         jTopPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1151, 0, 151, -1));
 
-        jLabel3.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lmd3.PNG"))); // NOI18N
-        jTopPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 60, 40));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lmd11.PNG"))); // NOI18N
-        jTopPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 390, 40));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/smallimage.jpg"))); // NOI18N
+        jTopPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 390, 40));
 
         getContentPane().add(jTopPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1320, 60));
 
@@ -107,19 +104,20 @@ public class LMDLandingPage extends javax.swing.JFrame {
         jPanelLeftPane.setPreferredSize(new java.awt.Dimension(300, 495));
         jPanelLeftPane.setLayout(new java.awt.BorderLayout());
 
-        jXTaskPaneContainer1.setBackground(new java.awt.Color(178, 255, 176));
+        jXTaskPaneContainer1.setBackground(new java.awt.Color(0, 102, 204));
         org.jdesktop.swingx.VerticalLayout verticalLayout1 = new org.jdesktop.swingx.VerticalLayout();
         verticalLayout1.setGap(14);
         jXTaskPaneContainer1.setLayout(verticalLayout1);
 
-        jXTaskPaneUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/users.PNG"))); // NOI18N
-        jXTaskPaneUsers.setTitle("Users");
         jXTaskPaneUsers.setAlignmentY(10.0F);
         jXTaskPaneUsers.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jXTaskPaneUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/users.PNG"))); // NOI18N
         jXTaskPaneUsers.setPreferredSize(new java.awt.Dimension(95, 120));
+        jXTaskPaneUsers.setTitle("Users");
 
         jLabelTeachers.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabelTeachers.setText("Teachers");
+        jLabelTeachers.setText("Teachers Dashboard");
+        jLabelTeachers.setOpaque(true);
         jLabelTeachers.setPreferredSize(new java.awt.Dimension(90, 30));
         jLabelTeachers.setRequestFocusEnabled(false);
         jLabelTeachers.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -127,26 +125,26 @@ public class LMDLandingPage extends javax.swing.JFrame {
                 jLabelTeachersMouseClicked(evt);
             }
         });
-        jXTaskPaneUsers.getContentPane().add(jLabelTeachers);
+        jXTaskPaneUsers.add(jLabelTeachers);
 
         jLabelStudents.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabelStudents.setText("Students");
+        jLabelStudents.setText("Students Dashboard");
         jLabelStudents.setPreferredSize(new java.awt.Dimension(90, 30));
         jLabelStudents.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelStudentsMouseClicked(evt);
             }
         });
-        jXTaskPaneUsers.getContentPane().add(jLabelStudents);
+        jXTaskPaneUsers.add(jLabelStudents);
 
         jXTaskPaneContainer1.add(jXTaskPaneUsers);
 
         jXTaskPaneNotifications.setBackground(new java.awt.Color(204, 245, 217));
+        jXTaskPaneNotifications.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jXTaskPaneNotifications.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bell3.PNG"))); // NOI18N
+        jXTaskPaneNotifications.setPreferredSize(new java.awt.Dimension(143, 120));
         jXTaskPaneNotifications.setScrollOnExpand(true);
         jXTaskPaneNotifications.setTitle("Notifications");
-        jXTaskPaneNotifications.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jXTaskPaneNotifications.setPreferredSize(new java.awt.Dimension(143, 120));
 
         jReminderLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jReminderLabel.setForeground(new java.awt.Color(51, 51, 51));
@@ -156,7 +154,7 @@ public class LMDLandingPage extends javax.swing.JFrame {
         jReminderLabel.setMaximumSize(new java.awt.Dimension(90, 30));
         jReminderLabel.setPreferredSize(new java.awt.Dimension(90, 30));
         jReminderLabel.setRequestFocusEnabled(false);
-        jXTaskPaneNotifications.getContentPane().add(jReminderLabel);
+        jXTaskPaneNotifications.add(jReminderLabel);
 
         jXTaskPaneContainer1.add(jXTaskPaneNotifications);
 
@@ -173,7 +171,7 @@ public class LMDLandingPage extends javax.swing.JFrame {
                 jLabelClassroomsMouseClicked(evt);
             }
         });
-        jXTaskPaneInfrastructure.getContentPane().add(jLabelClassrooms);
+        jXTaskPaneInfrastructure.add(jLabelClassrooms);
 
         jLabelViewFeedback.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabelViewFeedback.setText("View Feeback");
@@ -183,7 +181,7 @@ public class LMDLandingPage extends javax.swing.JFrame {
                 jLabelViewFeedbackMouseClicked(evt);
             }
         });
-        jXTaskPaneInfrastructure.getContentPane().add(jLabelViewFeedback);
+        jXTaskPaneInfrastructure.add(jLabelViewFeedback);
 
         jXTaskPaneContainer1.add(jXTaskPaneInfrastructure);
 
@@ -192,6 +190,14 @@ public class LMDLandingPage extends javax.swing.JFrame {
         jSplitPane1.setLeftComponent(jPanelLeftPane);
 
         jRightPanel.setLayout(new java.awt.BorderLayout());
+
+        jLabel3.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/learning.jpg"))); // NOI18N
+        jLabel3.setMaximumSize(new java.awt.Dimension(300, 300));
+        jLabel3.setMinimumSize(new java.awt.Dimension(300, 300));
+        jLabel3.setPreferredSize(new java.awt.Dimension(300, 300));
+        jRightPanel.add(jLabel3, java.awt.BorderLayout.CENTER);
+
         jSplitPane1.setRightComponent(jRightPanel);
 
         jSplitPanel.add(jSplitPane1, java.awt.BorderLayout.CENTER);
