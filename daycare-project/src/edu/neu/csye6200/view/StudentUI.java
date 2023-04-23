@@ -445,7 +445,7 @@ public class StudentUI extends javax.swing.JFrame {
 
 		StudentService studentService = new StudentService();
 		if (!jTextFieldStudentFirstName.getText().isEmpty()) {
-
+			studentList.clear();
 			Student studentAdd = StudentFactory.getInstance().getObject();
 			Parent parent = new Parent();
 			// seting studentId as row value
