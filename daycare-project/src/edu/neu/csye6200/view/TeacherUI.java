@@ -237,6 +237,7 @@ public class TeacherUI extends javax.swing.JFrame {
         jPanel2.add(jLabeTeacherlLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 78, -1));
 
         jTextFieldTeacherAnnualReviewDate.setToolTipText("Enter Text");
+        jTextFieldTeacherAnnualReviewDate.setEnabled(false);
         jTextFieldTeacherAnnualReviewDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldTeacherAnnualReviewDateActionPerformed(evt);
@@ -309,6 +310,27 @@ public class TeacherUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jInternalFrame1.getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        
+        Object[] data = new Object[6];
+		TeacherService tservice = new TeacherService();
+		List<Teacher> tList = new ArrayList<Teacher>();
+		try {
+			tList = tservice.getAllTeachers();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		DefaultTableModel mTable = (DefaultTableModel) jTable1.getModel();
+		mTable.setRowCount(0);
+		for (Teacher t : tList) {
+			data[0] = t.getEmployeeId();
+			data[1] = t.getFirstName();
+			data[2] = t.getLastName();
+			data[3] = t.getJoiningDate();
+			data[4] = t.getEmailID();
+			data[5] = t.getAnnualReviewDate();
+			mTable.addRow(data);
+		}
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -343,6 +365,7 @@ public class TeacherUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
 
 	private void jTextFieldSearchKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTextFieldSearchKeyReleased
 		searchTableContents(jTextFieldSearch.getText()); // TODO add your handling code here:

@@ -9,7 +9,9 @@
         PRIMARY KEY (employee_id)
     );
     
-   
+   insert into  daycare.teacher(employee_id, first_name, last_name,email, joining_date, annual_review_date, avg_rating) 
+values (1, "admin", "admin", "test@text.com", "2022-12-12", "2023-12-12", null);
+
  CREATE TABLE Student (
         student_id INT NOT NULL AUTO_INCREMENT,
         first_name VARCHAR(30) NOT NULL,
@@ -38,7 +40,7 @@
     CREATE TABLE Vaccine (
         vaccine_id INT NOT NULL AUTO_INCREMENT,
         name VARCHAR(30) NOT NULL,
-        description VARCHAR(30) NOT NULL,
+        description VARCHAR(30) DEFAULT NULL,
         doses_taken INT NOT NULL,
         total_doses INT NOT NULL,
         doses_taken_dates  VARCHAR(100),
@@ -49,6 +51,7 @@
         PRIMARY KEY (vaccine_id),
         FOREIGN KEY (student_id) REFERENCES Student(student_id)
     );
+    
     
     
        CREATE TABLE Feedback (

@@ -253,7 +253,12 @@ public class VaccinationUI extends javax.swing.JFrame {
 
 	private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonSaveActionPerformed
 		StudentService studentService = new StudentService();
-
+		try {
+			student = studentService.getLatestStudent();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		jTextFieldStudentName.setText(student.getFirstName() + " " + student.getLastName());
 		java.util.List<Vaccine> list = new ArrayList<>();
 		vaccine.setName(jTextFieldVaccineName.getText());
@@ -263,12 +268,13 @@ public class VaccinationUI extends javax.swing.JFrame {
 		vaccine.setLastShotDate(ConversionUtil.StringToLocalDate(jTextFieldLastShotDate.getText()));
 		student.checkVaccinationRules(vaccine);
 		student.getImmunizationRecord().add(vaccine);
-
+		System.out.println("vacccjidqwijdq ->>>>>" + vaccine);
 		System.out.println(vaccine.getName());
-
+		
 		try {
 
 			studentService.addStudentImmunizationRecord(vaccine);
+			ValidationUtil.showSuccess("Successfully saved Immunization recoreds for - " + student.getFirstName());
 
 		} catch (Exception ex) {
 			Logger.getLogger(StudentUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -327,7 +333,7 @@ public class VaccinationUI extends javax.swing.JFrame {
 		javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTableStudentVacc.getModel();
 
 		model.addRow(new Object[] { student.getStudentId(), jTextFieldVaccineName.getText(),
-				jTextFieldTotalDosesTaken.getText(), jTextFielDosesTaken.getText() + 1,
+				jTextFieldTotalDosesTaken.getText(), jTextFielDosesTaken.getText(),
 				jTextFieldLastShotDate.getText(), vaccine.getNextShotDate(), vaccine.isVaccinated() });
 //        model.addRow(new Object[]{initialId,jTextFieldStudentFirstName.getText(),jTextFieldStudentLastName.getText(),jTextFieldAddress.getText(),jTextFieldRegDate.getText()});
 		// jTextFieldStudentDob.getText(),jTextFieldParentFirstName.getText(),jTextFieldParentLastName.getText(),jTextFieldPhoneNumber.getText(),jTextFieldEmail.getText()});
