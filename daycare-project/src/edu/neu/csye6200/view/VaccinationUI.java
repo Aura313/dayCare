@@ -24,7 +24,6 @@ import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.table.DefaultTableModel;
-import org.netbeans.lib.*;
 
 
 /**
@@ -423,5 +422,5 @@ public class VaccinationUI extends javax.swing.JFrame {
 	private javax.swing.JTextField jTextFieldStudentName;
 	private javax.swing.JTextField jTextFieldTotalDosesTaken;
 	private javax.swing.JTextField jTextFieldVaccineName;
-	// End of variables declaration//GEN-END:variables
+	// End of variables declaration                   
 }
