@@ -6,8 +6,10 @@ import edu.neu.csye6200.dao.TeacherDaoImpl;
 import edu.neu.csye6200.model.DayCare;
 import edu.neu.csye6200.model.Teacher;
 import edu.neu.csye6200.util.FileUtil;
+
+
 /**
- * @author eraricamehra
+ * @author tanyashah
  *
  */
 public class TeacherService {

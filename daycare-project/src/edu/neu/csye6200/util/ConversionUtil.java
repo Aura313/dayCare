@@ -3,10 +3,7 @@
  */
 package edu.neu.csye6200.util;
 
-/**
- * @author pnakave
- *
- */
+
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,6 +15,10 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+/**
+ * @author tanyashah
+ *
+ */
 public class ConversionUtil {
 
 	public static int StringToInt(String s) {

@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 /**
- * @author eraricamehra
+ * @author tanyashah
  *
  */
 public class Vaccine {

@@ -3,8 +3,9 @@ package edu.neu.csye6200.model;
 import java.math.BigInteger;
 
 
+
 /**
- * @author eraricamehra
+ * @author tanyashah
  *
  */
 public class Parent  extends Person {

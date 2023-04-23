@@ -13,7 +13,7 @@ import edu.neu.csye6200.model.Vaccine;
 import edu.neu.csye6200.util.FileUtil;
 
 /**
- * @author eraricamehra
+ * @author tanyashah
  *
  */
 public class StudentService {
