@@ -5,6 +5,7 @@
  */
 package edu.neu.csye6200.view;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -68,6 +70,7 @@ public class TeacherUI extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabelTeacherTitle = new javax.swing.JLabel();
+        jLabelLogo = new javax.swing.JLabel();
         jPanelToolBar = new javax.swing.JPanel();
         jTextFieldSearch = new javax.swing.JTextField();
         JLabelSearch = new javax.swing.JLabel();
@@ -99,29 +102,36 @@ public class TeacherUI extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(109, 135, 255));
 
-        jLabelTeacherTitle.setBackground(new java.awt.Color(204, 204, 255));
         jLabelTeacherTitle.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabelTeacherTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTeacherTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tcher1.png"))); // NOI18N
         jLabelTeacherTitle.setText("Teacher Dashboard");
         jLabelTeacherTitle.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
+        jLabelLogo.setBackground(new java.awt.Color(51, 51, 51));
+        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lmdic1.PNG"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(453, 453, 453)
+                .addContainerGap()
+                .addComponent(jLabelLogo)
+                .addGap(392, 392, 392)
                 .addComponent(jLabelTeacherTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(606, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabelTeacherTitle))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
         );
 
         jPanelToolBar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -157,6 +167,13 @@ public class TeacherUI extends javax.swing.JFrame {
                 jButtonDownloadMouseClicked(evt);
             }
         });
+        
+        jButtonDownload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDownloadActionPerformed(evt);
+            }
+        });
+
 
         jButtonSave.setBackground(new java.awt.Color(0, 153, 51));
         jButtonSave.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
@@ -229,6 +246,7 @@ public class TeacherUI extends javax.swing.JFrame {
         jPanel2.add(jLabeTeacherlLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 78, -1));
 
         jTextFieldTeacherAnnualReviewDate.setToolTipText("Enter Text");
+        jTextFieldTeacherAnnualReviewDate.setEnabled(false);
         jTextFieldTeacherAnnualReviewDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldTeacherAnnualReviewDateActionPerformed(evt);
@@ -301,6 +319,27 @@ public class TeacherUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jInternalFrame1.getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        
+        Object[] data = new Object[6];
+		TeacherService tservice = new TeacherService();
+		List<Teacher> tList = new ArrayList<Teacher>();
+		try {
+			tList = tservice.getAllTeachers();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		DefaultTableModel mTable = (DefaultTableModel) jTable1.getModel();
+		mTable.setRowCount(0);
+		for (Teacher t : tList) {
+			data[0] = t.getEmployeeId();
+			data[1] = t.getFirstName();
+			data[2] = t.getLastName();
+			data[3] = t.getJoiningDate();
+			data[4] = t.getEmailID();
+			data[5] = t.getAnnualReviewDate();
+			mTable.addRow(data);
+		}
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -495,58 +534,43 @@ public class TeacherUI extends javax.swing.JFrame {
 		}
 		return false;
 	}
-
-	private void jButtonDownloadMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jButtonDownloadMouseClicked
-
-//        JFileChooser chooser = new JFileChooser();
-//		chooser.setSelectedFile(new File("teacher.txt")); // user will see this name during download
-//		if (JFileChooser.APPROVE_OPTION == chooser.showSaveDialog(null)) {
-//			String home = System.getProperty("user.home");
-//			File file = new File(home+"/Downloads/teachers.txt");
-//			
-//			Path originalPath = Paths.get("resources/teachers.txt");
-//		    Path copied = Paths.get(home+"/Downloads/teachers.txt");
-//		    try {
-//		    	System.out.println("Downloading CSV file to " + copied.toString());
-//				Files.copy(originalPath, copied, StandardCopyOption.REPLACE_EXISTING);
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}		
-//		}
-
+	
+	
+	private void jButtonDownloadActionPerformed(ActionEvent evt) {
+		// TODO Auto-generated method stub
+		
 		DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 		String pathToDownloads = System.getProperty("user.home");
 		FileWriter csv;
 		try {
-			csv = new FileWriter(new File(pathToDownloads + "/Downloads/teachersDownload.txt"));
+			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+			csv = new FileWriter(new File(pathToDownloads + "/Downloads/teachersDownload" + timestamp + ".txt"));
 			System.out.println(
-					"Downloading Teachers Info into CSV at: " + pathToDownloads + "/Downloads/teachersDownload.txt");
-//			
-			Object[] data = new Object[6];
-			TeacherService tservice = new TeacherService();
-			List<Teacher> tList = tservice.getAllTeachers();
-			DefaultTableModel mTable = (DefaultTableModel) jTable1.getModel();
-			mTable.setRowCount(0);
-			for (Teacher t : tList) {
-				data[0] = t.getEmployeeId();
-				data[1] = t.getFirstName();
-				data[2] = t.getLastName();
-				data[3] = t.getJoiningDate();
-				data[4] = t.getEmailID();
-				data[5] = t.getAnnualReviewDate();
-				mTable.addRow(data);
+					"Downloading Students Info into CSV at: " + pathToDownloads + "/Downloads/teachersDownload.txt");
+			for (int i = 0; i < model.getRowCount(); i++) {
+				for (int j = 0; j < model.getColumnCount(); j++) {
+					if (j == model.getColumnCount() - 1) {
+						csv.write(model.getValueAt(i, j).toString());
+					} else {
+						csv.write(model.getValueAt(i, j).toString() + ",");
+					}
+				}
+				csv.write("\n");
 			}
-
+			csv.close();
 			ValidationUtil.showSuccess("Successfully downloaded teachersDownload.txt CSV file");
 
-			// TODO add info_dialog to show success
-
-			System.out.println("Successfully downloaded teachers.txt CSV file");
-		} catch (Exception e) {
-			// System.out.println("Error in downloading teachers.txt CSV file");
+			System.out.println("Successfully downloaded teachersDownload.txt CSV file");
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+	}
+
+	private void jButtonDownloadMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jButtonDownloadMouseClicked
+
+	
+
 
 	}// GEN-LAST:event_jButtonDownloadMouseClicked
 
@@ -583,12 +607,17 @@ public class TeacherUI extends javax.swing.JFrame {
 
 	private void jButtonDeleteSelRowMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jButtonDeleteSelRowMouseClicked
 		DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-		int delId = jTable1.getSelectedRow() + 1;
+		
+		
+
+		int delId = jTable1.getSelectedRow();
+		int i = Integer.parseUnsignedInt(jTable1.getValueAt(delId, 0).toString());  
+		System.out.println();
 		TeacherService service = new TeacherService();
 		try {
-			System.out.println("Deleting teacher record with id: " + delId);
+			System.out.println("Deleting teacher record with id: " + i);
 			model.removeRow(jTable1.getSelectedRow());
-			service.deleteTeacher(delId);
+			service.deleteTeacher(i);
 			ValidationUtil.showSuccess("Successfully deleted teacher record!");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -665,6 +694,7 @@ public class TeacherUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelAnnualReviewDate;
     private javax.swing.JLabel jLabelEmail;
     private javax.swing.JLabel jLabelJoiningDate;
+    private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelTeacherTitle;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

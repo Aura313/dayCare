@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -595,7 +596,10 @@ public class StudentUI extends javax.swing.JFrame {
 		String pathToDownloads = System.getProperty("user.home");
 		FileWriter csv;
 		try {
-			csv = new FileWriter(new File(pathToDownloads + "/Downloads/studentsDownload.txt"));
+			
+			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+			csv = new FileWriter(new File(pathToDownloads + "/Downloads/studentsDownload" + timestamp + ".txt"));
+		
 			System.out.println(
 					"Downloading Students Info into CSV at: " + pathToDownloads + "/Downloads/studentsDownload.txt");
 			for (int i = 0; i < model.getRowCount(); i++) {
@@ -764,15 +768,28 @@ public class StudentUI extends javax.swing.JFrame {
 	private void jButtonDeleteSelRowMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jButtonDeleteSelRowMouseClicked
 		// TODO add your handling code here:
 		DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-		int delId = jTable1.getSelectedRow() + 1;
+//		int delId = jTable1.getSelectedRow() + 1;
+//		StudentService service = new StudentService();
+//		try {
+//			System.out.println("Deleting student record with id: " + delId);
+//			model.removeRow(jTable1.getSelectedRow());
+//			service.deleteStudent(delId);
+//			ValidationUtil.showSuccess("Successfully deleted student record!");
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
 		StudentService service = new StudentService();
+		int delId = jTable1.getSelectedRow();
+		int i = Integer.parseUnsignedInt(jTable1.getValueAt(delId, 0).toString());  
+		System.out.println();
 		try {
-			System.out.println("Deleting student record with id: " + delId);
+			System.out.println("Deleting teacher record with id: " + i);
 			model.removeRow(jTable1.getSelectedRow());
-			service.deleteStudent(delId);
+			service.deleteStudent(i);
 			ValidationUtil.showSuccess("Successfully deleted student record!");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
