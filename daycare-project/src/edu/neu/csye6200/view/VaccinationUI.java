@@ -45,6 +45,7 @@ public class VaccinationUI extends javax.swing.JFrame {
 		this.student = s;
 		jTextFieldStudentName.setText(student.getFirstName() + " " + student.getLastName());
 		jTableStudentVacc.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+                jTextFieldStudentName.setColumns(10);
 		jTableStudentVacc.setAutoCreateColumnsFromModel(true);
 
 	}
