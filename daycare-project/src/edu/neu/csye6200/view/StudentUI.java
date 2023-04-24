@@ -23,6 +23,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -51,7 +52,6 @@ public class StudentUI extends javax.swing.JFrame {
 		initComponents();
 		jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		jTable1.setAutoCreateColumnsFromModel(true);
-		
 
 		Object[] data = new Object[10];
 		StudentService sservice = new StudentService();
@@ -65,8 +65,6 @@ public class StudentUI extends javax.swing.JFrame {
 		DefaultTableModel mTable = (DefaultTableModel) jTable1.getModel();
 		mTable.setRowCount(0);
 		for (Student t : tList) {
-			
-			System.out.println( "cjhhwckc ->" + t);
 			data[0] = t.getStudentId();
 			data[1] = t.getFirstName();
 			data[2] = t.getLastName();
@@ -126,8 +124,6 @@ public class StudentUI extends javax.swing.JFrame {
 		jInternalFrame1 = new javax.swing.JInternalFrame();
 		jScrollPane1 = new javax.swing.JScrollPane();
 		jTable1 = new javax.swing.JTable();
-		
-	
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 		setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -187,9 +183,11 @@ public class StudentUI extends javax.swing.JFrame {
 				jButtonUploadActionPerformed(evt);
 			}
 		});
-
-		jButtonSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save1.png"))); // NOI18N
-		jButtonSave.setText("Save");
+		
+		jButtonSave.setBackground(new java.awt.Color(0, 153, 51));
+        jButtonSave.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jButtonSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save1.png"))); // NOI18N
+        jButtonSave.setText("SAVE TO DB");
 		jButtonSave.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButtonSaveActionPerformed(evt);
@@ -397,7 +395,6 @@ public class StudentUI extends javax.swing.JFrame {
 
 		jInternalFrame1.getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
 		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -480,8 +477,9 @@ public class StudentUI extends javax.swing.JFrame {
 			student = studentAdd;
 			studentList.add(studentAdd);
 		}
-		
-		
+
+		jTable1.getColumnModel().getColumn(0).setHeaderValue("Student Id");
+		jTable1.getTableHeader().resizeAndRepaint();
 		try {
 			System.out.println("Regestering student into Day care system");
 			studentList.forEach(student -> {
@@ -499,8 +497,6 @@ public class StudentUI extends javax.swing.JFrame {
 		} catch (Exception ex) {
 			Logger.getLogger(StudentUI.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		
-		
 
 		Object[] data = new Object[10];
 		StudentService sservice = new StudentService();
@@ -514,8 +510,6 @@ public class StudentUI extends javax.swing.JFrame {
 		DefaultTableModel mTable = (DefaultTableModel) jTable1.getModel();
 		mTable.setRowCount(0);
 		for (Student t : tList) {
-			
-			System.out.println( "cjhhwckc ->" + t);
 			data[0] = t.getStudentId();
 			data[1] = t.getFirstName();
 			data[2] = t.getLastName();
@@ -535,6 +529,8 @@ public class StudentUI extends javax.swing.JFrame {
 		JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 		int returnValue = jfc.showOpenDialog(null);
 		javax.swing.table.DefaultTableModel modelTable = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+		jTable1.getColumnModel().getColumn(0).setHeaderValue("Sr. No.");
+		jTable1.getTableHeader().resizeAndRepaint();
 		// int returnValue = jfc.showSaveDialog(null);
 		if (returnValue == JFileChooser.APPROVE_OPTION) {
 			File selectedFile = jfc.getSelectedFile();
@@ -563,9 +559,27 @@ public class StudentUI extends javax.swing.JFrame {
 		studentList.add(student);
 		String[] array = csvRecord.split(",");
 		Object[] data = new Object[array.length];
-		for (int i = 0; i < array.length; i++)
-			data[i] = array[i];
+//		DefaultTableModel mTable = (DefaultTableModel) jTable1.getModel();
+		
+		for (Student t : studentList) {
+			data[0] = t.getStudentId();
+			data[1] = t.getFirstName();
+			data[2] = t.getLastName();
+			data[3] = t.getAddress();
+			data[4] = t.getRegistrationDate();
+			data[5] = t.getDob();
+			data[6] = t.getParent().getFirstName();
+			data[7] = t.getParent().getLastName();
+			data[8] = t.getParent().getPhone();
+			data[9] = t.getParent().getEmail();
+//			mTable.addRow(data);	
+		}
 
+//		for (int i = 0; i < array.length; i++) {
+////			if(i != 6) {
+//				data[i] = array[i];
+////			}
+//		}
 		return data;
 	}
 
@@ -584,13 +598,42 @@ public class StudentUI extends javax.swing.JFrame {
 	}// GEN-LAST:event_jTextFieldStudentDobActionPerformed
 
 	// Search in table
+//	public void searchTableContents(String searchString) {
+//		DefaultTableModel currtableModel = (DefaultTableModel) jTable1.getModel();
+//		System.out.println("currtableModel ==>" + currtableModel );
+//		TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(currtableModel);
+//		jTable1.setRowSorter(tr);
+//		tr.setRowFilter(RowFilter.regexFilter(searchString.toLowerCase()));
+//	};
+
 	public void searchTableContents(String searchString) {
 		DefaultTableModel currtableModel = (DefaultTableModel) jTable1.getModel();
+		String searchTerm = searchString.trim().toLowerCase();
 
-		TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(currtableModel);
-		jTable1.setRowSorter(tr);
-		tr.setRowFilter(RowFilter.regexFilter(searchString.toLowerCase()));
-	};
+		if (searchTerm.isEmpty()) {
+			// Show all rows if the search field is empty
+			jTable1.setRowSorter(null);
+		} else {
+			// Create a row filter based on the search term
+			RowFilter<Object, Object> rowFilter = new RowFilter<Object, Object>() {
+				public boolean include(Entry<?, ?> entry) {
+					for (int i = 0; i < entry.getValueCount(); i++) {
+						if (String.valueOf(entry.getValue(i)).toLowerCase().contains(searchTerm)) {
+							// Return true if any column value matches the search term
+							return true;
+						}
+					}
+					// Return false if no column value matches the search term
+					return false;
+				}
+			};
+			// Apply the row filter to the table sorter
+			TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(currtableModel);
+			sorter.setRowFilter(rowFilter);
+			jTable1.setRowSorter(sorter);
+		}
+
+	}
 
 	private void jButtonDownloadMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jButtonDownloadMouseClicked
 
@@ -598,10 +641,10 @@ public class StudentUI extends javax.swing.JFrame {
 		String pathToDownloads = System.getProperty("user.home");
 		FileWriter csv;
 		try {
-			
+
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 			csv = new FileWriter(new File(pathToDownloads + "/Downloads/studentsDownload" + timestamp + ".txt"));
-		
+
 			System.out.println(
 					"Downloading Students Info into CSV at: " + pathToDownloads + "/Downloads/studentsDownload.txt");
 			for (int i = 0; i < model.getRowCount(); i++) {
@@ -703,7 +746,7 @@ public class StudentUI extends javax.swing.JFrame {
 	private void jButtonAddVaccineRecMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jButtonAddVaccineRecMouseClicked
 
 		System.out.println("jfwgdygweyuew");
-		
+
 		jTextFieldStudentFirstName.setText("");
 		jTextFieldStudentLastName.setText("");
 		jTextFieldAddress.setText("");
@@ -781,10 +824,10 @@ public class StudentUI extends javax.swing.JFrame {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		
+
 		StudentService service = new StudentService();
 		int delId = jTable1.getSelectedRow();
-		int i = Integer.parseUnsignedInt(jTable1.getValueAt(delId, 0).toString());  
+		int i = Integer.parseUnsignedInt(jTable1.getValueAt(delId, 0).toString());
 		System.out.println();
 		try {
 			System.out.println("Deleting teacher record with id: " + i);

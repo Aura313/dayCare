@@ -55,7 +55,8 @@ public class TeacherUI extends javax.swing.JFrame {
 		initComponents();
 		jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		jTable1.setAutoCreateColumnsFromModel(true);
-		
+		jTextFieldTeacherAnnualReviewDate.setText("Will be defined based on Joining Date");
+		jTextFieldTeacherAnnualReviewDate.setEnabled(false);
         Object[] data = new Object[6];
 		TeacherService tservice = new TeacherService();
 		List<Teacher> tList = new ArrayList<Teacher>();
@@ -72,8 +73,8 @@ public class TeacherUI extends javax.swing.JFrame {
 			data[1] = t.getFirstName();
 			data[2] = t.getLastName();
 			data[3] = t.getJoiningDate();
-			data[4] = t.getEmailID();
-			data[5] = t.getAnnualReviewDate();
+			data[4] = t.getAnnualReviewDate();
+			data[5] = t.getEmailID();
 			mTable.addRow(data);
 		}
 
@@ -184,7 +185,7 @@ public class TeacherUI extends javax.swing.JFrame {
         jButtonSave.setBackground(new java.awt.Color(0, 153, 51));
         jButtonSave.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jButtonSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save1.png"))); // NOI18N
-        jButtonSave.setText(" SAVE TO DB");
+        jButtonSave.setText("SAVE TO DB");
         jButtonSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSaveActionPerformed(evt);
@@ -408,6 +409,8 @@ public class TeacherUI extends javax.swing.JFrame {
 //		}
 
 //		System.out.println(teacherList.size() + "dqwiodoiqwdoiqw");
+		jTable1.getColumnModel().getColumn(0).setHeaderValue("Emp Id");
+		jTable1.getTableHeader().resizeAndRepaint();
 
 		try {
 			System.out.println("Regestering teacher into Day care system");
@@ -438,8 +441,8 @@ public class TeacherUI extends javax.swing.JFrame {
 				tdata[1] = t.getFirstName();
 				tdata[2] = t.getLastName();
 				tdata[3] = t.getJoiningDate();
-				tdata[4] = t.getEmailID();
-				tdata[5] = t.getAnnualReviewDate();
+				tdata[4] = t.getAnnualReviewDate();
+				tdata[5] = t.getEmailID();
 				mTable.addRow(tdata);
 			}
 
@@ -456,6 +459,9 @@ public class TeacherUI extends javax.swing.JFrame {
 		JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 		int returnValue = jfc.showOpenDialog(null);
 		javax.swing.table.DefaultTableModel modelTable = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+		jTable1.getColumnModel().getColumn(0).setHeaderValue("Sr. No.");
+		jTable1.getTableHeader().resizeAndRepaint();
+		System.out.println(jTable1.getColumnModel().getColumn(0).getHeaderValue()); 
 		// int returnValue = jfc.showSaveDialog(null);
 		if (returnValue == JFileChooser.APPROVE_OPTION) {
 			File selectedFile = jfc.getSelectedFile();
@@ -478,12 +484,37 @@ public class TeacherUI extends javax.swing.JFrame {
 	}// GEN-LAST:event_jButtonUploadActionPerformed
 
 	public void searchTableContents(String searchString) {
+//		DefaultTableModel currtableModel = (DefaultTableModel) jTable1.getModel();
+//
+//		TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(currtableModel);
+//		jTable1.setRowSorter(tr);
+//		tr.setRowFilter(RowFilter.regexFilter(searchString.toLowerCase()));
+		
 		DefaultTableModel currtableModel = (DefaultTableModel) jTable1.getModel();
+		String searchTerm = searchString.trim().toLowerCase();
 
-		TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(currtableModel);
-		jTable1.setRowSorter(tr);
-		tr.setRowFilter(RowFilter.regexFilter(searchString.toLowerCase()));
-
+		if (searchTerm.isEmpty()) {
+			// Show all rows if the search field is empty
+			jTable1.setRowSorter(null);
+		} else {
+			// Create a row filter based on the search term
+			RowFilter<Object, Object> rowFilter = new RowFilter<Object, Object>() {
+				public boolean include(Entry<?, ?> entry) {
+					for (int i = 0; i < entry.getValueCount(); i++) {
+						if (String.valueOf(entry.getValue(i)).toLowerCase().contains(searchTerm)) {
+							// Return true if any column value matches the search term
+							return true;
+						}
+					}
+					// Return false if no column value matches the search term
+					return false;
+				}
+			};
+			// Apply the row filter to the table sorter
+			TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(currtableModel);
+			sorter.setRowFilter(rowFilter);
+			jTable1.setRowSorter(sorter);
+		}
 	};
 
 	// Used when csv is uploaded and table is loaded
@@ -496,7 +527,7 @@ public class TeacherUI extends javax.swing.JFrame {
 //			e.printStackTrace();
 //		}
 
-		System.out.println(teacherList.size() + "fweuhfuiwe");
+//		System.out.println(teacherList.size() + "fweuhfuiwe");
 		teacher = new Teacher(csvRecord);
 		teacherList.add(teacher);
 
@@ -580,8 +611,8 @@ public class TeacherUI extends javax.swing.JFrame {
 		javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
 		initialId = model.getRowCount() + 1;
 		model.addRow(new Object[] { initialId, jTextFieldTeacherFirstName.getText(),
-				jTextFieldTeacherLastName.getText(), jTextFieldJoiningDate.getText(), jTextFieldEmail.getText(),
-				jTextFieldTeacherAnnualReviewDate.getText() });
+				jTextFieldTeacherLastName.getText(), jTextFieldJoiningDate.getText(),
+				jTextFieldTeacherAnnualReviewDate.getText(), jTextFieldEmail.getText() });
 
 	}// GEN-LAST:event_jAddTeacherButtonMouseClicked
 

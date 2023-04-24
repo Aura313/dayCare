@@ -30,12 +30,12 @@ public class StudentService {
 		List<String> studentCSVData = FileUtil.readTextFile("resources/students.txt");
 		StudentDaoImpl impl = new StudentDaoImpl();
 		Student student = null;
-		System.out.println("dnqjwdhqwjdquwhdquh");
+//		System.out.println("dnqjwdhqwjdquwhdquh");
 		for (String csvString : studentCSVData) {
 			student = new Student(csvString);
 			DayCare.getStudentsList().add(student);
 			Parent parent = student.getParent();
-			System.out.println("parent djqiwdhq --->" + parent);
+//			System.out.println("parent djqiwdhq --->" + parent);
 			int parentId = impl.addParent(new Parent(parent.getParentId(), parent.getFirstName(), parent.getLastName(),
 					parent.getEmail(), parent.getPhone()));
 			student.setParentId(parentId);
@@ -49,8 +49,8 @@ public class StudentService {
 		StudentDaoImpl impl = new StudentDaoImpl();
 		Parent parent = newStudent.getParent();
 		
-		System.out.println("newStudent djqiwdhq --->" + newStudent);
-		System.out.println("newStudentparent djqiwdhq --->" + parent);
+//		System.out.println("newStudent djqiwdhq --->" + newStudent);
+//		System.out.println("newStudentparent djqiwdhq --->" + parent);
 		int parentId = impl.addParent(new Parent(parent.getParentId(), parent.getFirstName(), parent.getLastName(), parent.getEmail(),
 				parent.getPhone()));
 		newStudent.setParentId(parentId);

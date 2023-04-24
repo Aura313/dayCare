@@ -189,6 +189,7 @@ public class Student extends Person {
 	public void checkVaccinationRules(Vaccine vaccine) {
 
 		if (vaccine.getName().equalsIgnoreCase("Hib")) {
+			System.out.println("inHib");
 			checkHiBVaccinationRules(vaccine);
 		} else if (vaccine.getName().equalsIgnoreCase("DTaP") || (vaccine.getName().equalsIgnoreCase("tdap"))) {
 			checkDTaPVaccinationRules(vaccine);

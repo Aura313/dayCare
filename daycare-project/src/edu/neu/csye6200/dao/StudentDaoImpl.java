@@ -63,7 +63,7 @@ public class StudentDaoImpl {
 	}
 
 	public int addStudent(Student student) throws Exception {
-		System.out.println("stuuudent --->" + student);
+//		System.out.println("stuuudent --->" + student);
 		connection = getConnection();
 		preparedStatement = connection.prepareStatement(
 				" insert into daycare.Student(student_id, first_name, last_name, address, dob, age, registration_date,teacher_assigned, parent_id) values (default,?,?,?,?,?,?,?,?)",
@@ -135,8 +135,8 @@ public class StudentDaoImpl {
 	}
 
 	public void addStudentVaccinationRecord(Vaccine vaccine) throws Exception {
-		System.out.println("vacccc---> " + vaccine);
-		System.out.println("vaccccsqsdqw---> " + vaccine.getStudentId());
+//		System.out.println("vacccc---> " + vaccine);
+//		System.out.println("vaccccsqsdqw---> " + vaccine.getStudentId());
 		connection = getConnection();
 		preparedStatement = connection.prepareStatement(
 				" insert into daycare.Vaccine (vaccine_id, name, doses_taken, total_doses,  doses_taken_dates, last_shot_date, upcoming_shot_date, student_id, is_vaccinated) "

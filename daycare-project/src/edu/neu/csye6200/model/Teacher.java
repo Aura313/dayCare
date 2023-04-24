@@ -39,7 +39,7 @@ public class Teacher extends Person {
 		this.firstName = field[1];
 		this.lastName = field[2];
 		this.joiningDate =ConversionUtil.StringToLocalDate(field[3]);
-		this.emailID = field[4];
+		this.emailID = field[5];
 		this.annualReviewDate  = joiningDate.plusYears(1);
 	}
 
