@@ -11,7 +11,9 @@ import edu.neu.csye6200.model.Classroom;
 import edu.neu.csye6200.model.Feedback;
 import edu.neu.csye6200.model.Group;
 import edu.neu.csye6200.model.Teacher;
+import edu.neu.csye6200.scheduler.Scheduler;
 
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -148,12 +150,18 @@ public class LMDLandingPage extends javax.swing.JFrame {
 
         jReminderLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jReminderLabel.setForeground(new java.awt.Color(51, 51, 51));
-        jReminderLabel.setText("Reminder");
+        jReminderLabel.setText("Renewal Reminders");
         jReminderLabel.setAlignmentY(5.0F);
         jReminderLabel.setIconTextGap(10);
         jReminderLabel.setMaximumSize(new java.awt.Dimension(90, 30));
         jReminderLabel.setPreferredSize(new java.awt.Dimension(90, 30));
         jReminderLabel.setRequestFocusEnabled(false);
+        jReminderLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+        	public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelRemindersMouseClicked(evt);
+            }
+
+        });
         jXTaskPaneNotifications.add(jReminderLabel);
 
         jXTaskPaneContainer1.add(jXTaskPaneNotifications);
@@ -208,6 +216,11 @@ public class LMDLandingPage extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+	private void jLabelRemindersMouseClicked(MouseEvent evt) {
+		// TODO Auto-generated method stub
+		new Scheduler(30,60,30).activateSchduler();
+		
+	}
     private void jLabelStudentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelStudentsMouseClicked
         // TODO add your handling code here:
        student= new StudentUI();
