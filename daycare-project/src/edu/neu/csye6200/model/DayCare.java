@@ -9,9 +9,8 @@ import java.util.List;
 
 import edu.neu.csye6200.controller.GroupHelper;
 
-
 /**
- * @author pratiknakave
+ * @author tanyashah
  *
  */
 public class DayCare {

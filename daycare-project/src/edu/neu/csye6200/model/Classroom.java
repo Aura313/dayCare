@@ -6,8 +6,9 @@ package edu.neu.csye6200.model;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
- * @author pnakave
+ * @author sid
  *
  */
 public class Classroom {

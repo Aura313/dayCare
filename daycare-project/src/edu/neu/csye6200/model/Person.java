@@ -6,8 +6,9 @@ package edu.neu.csye6200.model;
 import java.time.LocalDate;
 import java.util.Date;
 
+
 /**
- * @author pnakave
+ * @author tanyashah
  *
  */
 public abstract class Person {

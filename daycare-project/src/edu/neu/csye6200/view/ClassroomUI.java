@@ -14,9 +14,10 @@ import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+
 /**
+ * @author sid
  *
- * @author erruc
  */
 public class ClassroomUI extends javax.swing.JFrame {
 

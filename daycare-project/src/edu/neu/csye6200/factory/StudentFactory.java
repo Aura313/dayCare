@@ -5,8 +5,9 @@ package edu.neu.csye6200.factory;
 
 import edu.neu.csye6200.model.Student;
 
+
 /**
- * @author pnakave
+ * @author tanyashah
  *
  */
 public class StudentFactory extends AbstractPersonFactory {

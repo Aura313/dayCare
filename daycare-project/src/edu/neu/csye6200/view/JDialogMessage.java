@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 package edu.neu.csye6200.view;
+
 /**
+ * @author tanyashah
  *
- * @author erruc
  */
 public class JDialogMessage extends javax.swing.JFrame {
 
