@@ -1,6 +1,7 @@
 package edu.neu.csye6200.scheduler;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -21,14 +22,16 @@ public final class Scheduler {
 	private static final boolean DONT_INTERRUPT_IF_RUNNING = false;
 
 
-	Scheduler(long initialDelay, long delayBetweenBeeps, long stopAfter) {
+	public Scheduler(long initialDelay, long delayBetweenBeeps, long stopAfter) {
 		this.initialDelay = initialDelay;
 		this.delayBetweenRuns = delayBetweenBeeps;
 		this.shutdownAfter = stopAfter;
 		this.scheduler = Executors.newScheduledThreadPool(NUM_THREADS);
 	}
 
-	void activateSchduler() {
+	public void activateSchduler() {
+		//new Scheduler(30,60,30).activateSchduler();
+		System.out.println("Scheduler started");
 		Runnable startTask = new ScheduleTask();
 		ScheduledFuture<?> runTask = scheduler.scheduleWithFixedDelay(startTask, 
 				initialDelay,
@@ -47,7 +50,15 @@ public final class Scheduler {
             StudentService service = new StudentService();
             List<String> emailIds = new ArrayList<>();
             try {
-				service.getAllStudents().stream().forEach(student -> emailIds.add(student.getParent().getEmail()));
+				service.getAllStudents().stream().forEach(student -> {
+					LocalDate renewalDate = student.getRegistrationDate().plusYears(1);
+					System.out.println("Renewal Date "+ renewalDate);
+					if(renewalDate.isAfter(LocalDate.now()) && 
+							renewalDate.isBefore(LocalDate.now().plusYears(1))){
+						System.out.println(student.getParent().getEmail() + "due for renewal");
+						emailIds.add(student.getParent().getEmail());
+					}		
+				});
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

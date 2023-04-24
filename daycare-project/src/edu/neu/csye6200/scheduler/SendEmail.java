@@ -20,8 +20,8 @@ public class SendEmail {
 	public void send(List<String> emailIds) {
 		setupServer();
 		createEmail(emailIds);
-		String from = "******@gmail.com";
-		String password = "******";
+		String from = "**@gmail.com";
+		String password = "";
 		String host = "smtp.gmail.com";
 		try {
 			Transport transport = session.getTransport("smtp");
@@ -47,7 +47,7 @@ public class SendEmail {
 	}
 
 	public MimeMessage createEmail(List<String> emailIds) {
-		String subject = "Reminder: Annual Registeration Renewal Pending Daycare";
+		String subject = "Daycare Reminder: Annual Registeration Renewal Pending";
 		String body = "Dear Parent/Gaurdian, \n \n Your ward is due for their annual registration renewal. "
 				+ "Kindly visit our center to compelete your renewal. "
 				+ " \n \n Sincerely, \n Daycare ";
