@@ -10,10 +10,6 @@ import java.util.concurrent.TimeUnit;
 
 import edu.neu.csye6200.controller.StudentService;
 
-/**
- * @author eraricamehra
- *
- */
 public final class Scheduler {
 
 	private final ScheduledExecutorService scheduler;
@@ -34,8 +30,10 @@ public final class Scheduler {
 
 	void activateSchduler() {
 		Runnable startTask = new ScheduleTask();
-		ScheduledFuture<?> runTask = scheduler.scheduleWithFixedDelay(startTask, initialDelay,
-				delayBetweenRuns, TimeUnit.SECONDS);
+		ScheduledFuture<?> runTask = scheduler.scheduleWithFixedDelay(startTask, 
+				initialDelay,
+				delayBetweenRuns, 
+				TimeUnit.SECONDS);
 		Runnable stopTask = new StopScheduledTask(runTask);
 		scheduler.schedule(stopTask, shutdownAfter, TimeUnit.SECONDS);
 		
@@ -45,7 +43,6 @@ public final class Scheduler {
 
 		@Override
 		public void run() {
-			//TODO get list of students whose registration needs to be renewed 
 			SendEmail mail = new SendEmail();
             StudentService service = new StudentService();
             List<String> emailIds = new ArrayList<>();
@@ -54,10 +51,6 @@ public final class Scheduler {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-//			List<String> emailIds = new ArrayList<>();
-//			//TODO send them email
-//			emailIds.add("erarica.mehra@gmail.com");
-//			emailIds.add("irarikamehra@gmail.com");
 			if(!emailIds.isEmpty()) {
 			mail.send(emailIds);
 			}

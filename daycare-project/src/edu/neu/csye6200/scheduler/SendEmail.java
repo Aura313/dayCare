@@ -10,14 +10,8 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 
-/**
- * @author eraricamehra
- *
- */
 public class SendEmail {
 
 	Session session = null;
@@ -53,8 +47,10 @@ public class SendEmail {
 	}
 
 	public MimeMessage createEmail(List<String> emailIds) {
-		String subject = "Reminder: Daycare";
-		String body = "Dear Parent/Gaurdian, \n Your ward is due for their annual registration renewal. \n Sincerely, \n Daycare ";
+		String subject = "Reminder: Annual Registeration Renewal Pending Daycare";
+		String body = "Dear Parent/Gaurdian, \n \n Your ward is due for their annual registration renewal. "
+				+ "Kindly visit our center to compelete your renewal. "
+				+ " \n \n Sincerely, \n Daycare ";
 
 		try {
 			mimeMessage = new MimeMessage(session);
