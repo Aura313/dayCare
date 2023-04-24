@@ -7,6 +7,8 @@ package edu.neu.csye6200.view;
 
 import edu.neu.csye6200.controller.FeedbackService;
 import edu.neu.csye6200.model.Feedback;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 import java.util.List;
 import javax.swing.JTable;
@@ -14,14 +16,14 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author erruc
+ * @author varadakulkarni
  */
 public class FeedbackUI extends javax.swing.JFrame {
 
     /**
      * Creates new form ViewFeedback
      */
-    private String rating,review,lastFeedBackDate,nextFeedbackDate; 
+    private String empId, tName, rating,review,lastFeedBackDate,nextFeedbackDate; 
     public FeedbackUI() {
         initComponents();
         jTableFeedback.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
@@ -44,7 +46,7 @@ public class FeedbackUI extends javax.swing.JFrame {
 		}
         jTableFeedback.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         jTableFeedback.setAutoCreateColumnsFromModel(true);
-        model.addRow(new Object[]{rating,review,lastFeedBackDate,nextFeedbackDate});
+        model.addRow(new Object[]{empId,tName,rating,review,lastFeedBackDate,nextFeedbackDate});
         
     }
 
@@ -88,7 +90,6 @@ public class FeedbackUI extends javax.swing.JFrame {
         );
 
         jInternalFrame1.setResizable(true);
-        jInternalFrame1.setFrameIcon(null);
         jInternalFrame1.setPreferredSize(new java.awt.Dimension(920, 454));
         jInternalFrame1.setRequestFocusEnabled(false);
         jInternalFrame1.setVerifyInputWhenFocusTarget(false);
@@ -96,13 +97,13 @@ public class FeedbackUI extends javax.swing.JFrame {
 
         jTableFeedback.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Review", "Rating", "Last Feedback Date", "Next Feedback Date"
+                "Employee Id", "Teacher Name", "Review", "Rating", "Last Feedback Date", "Next Feedback Date"
             }
         ));
         jScrollPane1.setViewportView(jTableFeedback);
@@ -168,15 +169,71 @@ public class FeedbackUI extends javax.swing.JFrame {
     
     private DefaultTableModel fetchFeedbackDetails(DefaultTableModel model) throws Exception {
         FeedbackService service = new FeedbackService();
-        List<Feedback>	 feebbackList = service.getAllTeacherReviews();
+        List<Feedback> feebbackList = new ArrayList<Feedback>();
+        LocalDate date1 = LocalDate.of(2023, 04, 15);
+        LocalDate date2 = LocalDate.of(2023, 03, 12);
+        LocalDate date3 = LocalDate.of(2023, 03, 25);
+        LocalDate date4 = LocalDate.of(2023, 04, 10);
+        LocalDate date5 = LocalDate.of(2023, 02, 28);
+        
+        Feedback f1 = new Feedback();
+        f1.setEmployeeId(1);
+        f1.setTeacherName("Eddie");
+        f1.setReview("Excellent!");
+        f1.setRating(4.87);
+        f1.setLastFeedBackDate(date1);
+        f1.setNextFeedbackDate(date1.plusMonths(2));
+        
+        Feedback f2 = new Feedback();
+        f2.setEmployeeId(2);
+        f2.setTeacherName("Lawrence");
+        f2.setReview("Good teaching style!");
+        f2.setRating(4.65);
+        f2.setLastFeedBackDate(date2);
+        f2.setNextFeedbackDate(date2.plusMonths(2));
+        
+        Feedback f3 = new Feedback();
+        f3.setEmployeeId(6);
+        f3.setTeacherName("Ross");
+        f3.setReview("Average!");
+        f3.setRating(4.25);
+        f3.setLastFeedBackDate(date3);
+        f3.setNextFeedbackDate(date3.plusMonths(2));
+        
+        Feedback f4 = new Feedback();
+        f4.setEmployeeId(8);
+        f4.setTeacherName("Edward");
+        f4.setReview("No interactive classes!");
+        f4.setRating(2.81);
+        f4.setLastFeedBackDate(date4);
+        f4.setNextFeedbackDate(date4.plusMonths(2));
+        
+        Feedback f5 = new Feedback();
+        f5.setEmployeeId(5);
+        f5.setTeacherName("Hellen");
+        f5.setReview("Need more practical teaching approach!");
+        f5.setRating(3.93);
+        f5.setLastFeedBackDate(date5);
+        f5.setNextFeedbackDate(date5.plusMonths(2));
+        
+        feebbackList.add(f1);
+        feebbackList.add(f2);
+        feebbackList.add(f3);
+        feebbackList.add(f4);
+        feebbackList.add(f5);
+        
+        //List<Feedback>	 feebbackList = service.getAllTeacherReviews();
+        
         for (Feedback feedback : feebbackList) {
             System.out.println("inside ");
-            Object[] row = new Object[5];
+            Object[] row = new Object[6];
             row[0] = feedback.getEmployeeId();
-            row[1] = feedback.getRating();
-            row[2] = feedback.getLastFeedBackDate();
-            row[3] = feedback.getNextFeedbackDate();
-            row[4] = feedback.getReview();
+            row[1] = feedback.getTeacherName();
+            row[2] = feedback.getReview();
+            row[3] = feedback.getRating();
+            row[4] = feedback.getLastFeedBackDate();
+            row[5] = feedback.getNextFeedbackDate();
+            
             model.addRow(row);
         }
         return model;

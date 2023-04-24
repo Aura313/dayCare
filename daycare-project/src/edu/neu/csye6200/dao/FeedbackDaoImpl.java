@@ -13,7 +13,7 @@ import java.util.List;
 import edu.neu.csye6200.model.Feedback;
 
 /**
- * @author eraricamehra
+ * @author varadakulkarni
  *
  */
 
@@ -36,13 +36,14 @@ public class FeedbackDaoImpl {
 	
 	public void addFeedback(Feedback feedback) throws Exception {
 		connection = getConnection();
-		preparedStatement = connection.prepareStatement(" insert into daycare.Feedback(feedback_id, employee_id, rating, review, last_feedback_date, next_feedback_date) values "
-				+ " (default, ?, ?, ?, ?, ?)");
+		preparedStatement = connection.prepareStatement(" insert into daycare.Feedback(feedback_id, employee_id, teacher_name, rating, review, last_feedback_date, next_feedback_date) values "
+				+ " (default, ?, ?, ?, ?, ?, ?)");
 		preparedStatement.setInt(1, feedback.getEmployeeId());
-		preparedStatement.setDouble(2, feedback.getRating());
-		preparedStatement.setString(3, feedback.getReview());
-		preparedStatement.setDate(4, Date.valueOf(feedback.getLastFeedBackDate()));
-		preparedStatement.setDate(5, Date.valueOf(feedback.getNextFeedbackDate()));
+                preparedStatement.setString(2, feedback.getTeacherName());
+                preparedStatement.setString(3, feedback.getReview());
+		preparedStatement.setDouble(4, feedback.getRating());
+		preparedStatement.setDate(5, Date.valueOf(feedback.getLastFeedBackDate()));
+		preparedStatement.setDate(6, Date.valueOf(feedback.getNextFeedbackDate()));
 		preparedStatement.executeUpdate();
 		System.out.println("Feedback Given");
 		
@@ -79,7 +80,7 @@ public class FeedbackDaoImpl {
 		while (resultSet.next()) {
 			Date lastFeedbackdate = resultSet.getDate("last_feedback_date");
 			Date nextFeedbackdate = resultSet.getDate("next_feedback_date");
-			feedback = new Feedback(resultSet.getInt("employee_id"), resultSet.getString("review"),
+			feedback = new Feedback(resultSet.getInt("employee_id"), resultSet.getString("teacher_name"), resultSet.getString("review"),
 					resultSet.getDouble("rating"), lastFeedbackdate.toLocalDate(), nextFeedbackdate.toLocalDate());
 			feedbackList.add(feedback);
 		}
